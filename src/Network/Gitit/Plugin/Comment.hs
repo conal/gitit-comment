@@ -19,15 +19,14 @@ import Data.List (isPrefixOf,isSuffixOf)
 import Network.Gitit.Interface
 
 plugin :: Plugin
-plugin = PageTransform $ return {- . processWith fixBlock-} . processWith (concatMap fixInline)
+plugin = PageTransform $ return . processWith (concatMap fixBlock) . processWith (concatMap fixInline)
 
--- , Plain [HtmlInline "<!--# ... #-->"]
+-- , Plain [HtmlInline "<!--[ ... ]-->"]
 
 fixInline :: Inline -> [Inline]
-fixInline (HtmlInline s) | isPrefixOf "<!--#" s && isSuffixOf "#-->" s = []
+fixInline (HtmlInline s) | isPrefixOf "<!--[" s && isSuffixOf "]-->" s = []
 fixInline x = [x]
 
--- fixBlock :: Block -> Block
--- fixBlock (CodeBlock attr@(_,classes,_) s)
---   | "haskell" `elem` classes = CodeBlock attr (translate s)
--- fixBlock x = x
+fixBlock :: Block -> [Block]
+fixBlock (Plain []) = []
+fixBlock x = [x]

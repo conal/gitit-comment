@@ -1,5 +1,5 @@
 Name:                gitit-comment
-Version:             0.0.0
+Version:             0.0.1
 Cabal-Version:       >= 1.2
 Synopsis:            Gitit plugin: remove comments like <!--[ ... ]-->
 Category:            Text
@@ -17,7 +17,7 @@ Package-Url:         http://github.com/conal/gitit-comment
 Library
   hs-Source-Dirs:      src
   Extensions:
-  Build-Depends:       base<5, containers, gitit
+  Build-Depends:       base<5, containers, gitit >= 0.7.3.12
   Exposed-Modules:     
                        Network.Gitit.Plugin.Comment
                        

@@ -9,7 +9,7 @@
 -- Maintainer  :  conal@conal.net
 -- Stability   :  experimental
 -- 
--- Gitit plugin: remove comments like <!--# ... #-->
+-- Gitit plugin: remove comments like <!--[ ... ]-->
 ----------------------------------------------------------------------
 
 module Network.Gitit.Plugin.Comment (plugin) where
@@ -19,13 +19,16 @@ import Data.List (isPrefixOf,isSuffixOf)
 import Network.Gitit.Interface
 
 plugin :: Plugin
-plugin = PageTransform $ return . processWith (concatMap fixBlock) . processWith (concatMap fixInline)
+plugin = PageTransform $ return . bottomUp (concatMap fixBlock) . bottomUp (concatMap fixInline)
 
 -- , Plain [HtmlInline "<!--[ ... ]-->"]
 
 fixInline :: Inline -> [Inline]
-fixInline (HtmlInline s) | isPrefixOf "<!--[" s && isSuffixOf "]-->" s = []
+fixInline (RawInline "html" s) | isPrefixOf "<!--[" s && isSuffixOf "]-->" s = []
 fixInline x = [x]
+
+-- After emptying some html inlines, we might have empty blocks.
+-- I haven't tested this plugin enough to see what happens.
 
 fixBlock :: Block -> [Block]
 fixBlock (Plain []) = []

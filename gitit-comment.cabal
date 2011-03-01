@@ -1,5 +1,5 @@
 Name:                gitit-comment
-Version:             0.0.1
+Version:             0.0.2
 Cabal-Version:       >= 1.2
 Synopsis:            Gitit plugin: remove comments like <!--[ ... ]-->
 Category:            Text

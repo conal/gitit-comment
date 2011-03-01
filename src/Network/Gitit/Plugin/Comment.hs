@@ -21,8 +21,6 @@ import Network.Gitit.Interface
 plugin :: Plugin
 plugin = PageTransform $ return . bottomUp (concatMap fixBlock) . bottomUp (concatMap fixInline)
 
--- , Plain [HtmlInline "<!--[ ... ]-->"]
-
 fixInline :: Inline -> [Inline]
 fixInline (RawInline "html" s) | isPrefixOf "<!--[" s && isSuffixOf "]-->" s = []
 fixInline x = [x]

@@ -31,6 +31,7 @@ plugin = PageTransform $ return . bottomUp fixBlock . bottomUp fixInline
 -- fixInline (RawInline "html" s) | isPrefixOf "<!--[" s && isSuffixOf "]-->" s = []
 -- fixInline x = [x]
 
+-- | Unary transformation
 type Unop a = a -> a
 
 fixInline :: Unop Inline

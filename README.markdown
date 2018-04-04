@@ -1,3 +1,7 @@
+**Note:** This repository is subsumed by [gitit-to-blog](https://github.com/conal/gitit-to-blog).
+
+* * * * * * * * * * * * * * * * * * * *
+
 This [Haskell](http://haskell.org)-based project is a simple [gitit](http://gitit.net/) plugin that removes html comments of the form `<!--[ ... ]-->`.
 Note the extra brackets.
 

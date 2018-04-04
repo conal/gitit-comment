@@ -1,4 +1,4 @@
-This [Haskell](http://haskell.org)-based project is a simple [gitit](http://gitit.net/) plugin that removes html comments of the form "<!--[ ... ]-->".
+This [Haskell](http://haskell.org)-based project is a simple [gitit](http://gitit.net/) plugin that removes html comments of the form `<!--[ ... ]-->`.
 Note the extra brackets.
 
 Compile the project with `cabal install gitit-comment` (or just `cabal install` if you've already downloaded the source and are in its main directory).
